@@ -1,10 +1,17 @@
 package mud
 
 class Room (
-    val exits:Array[String],
-    private var items:List[Item],
     val name:String,
-    val description:String){
+    val description:String,
+    private var _exits:Array[Option[Room]],
+    private var _items:List[Item]){
+  
+  
+  def items = _items
+  def exits = _exits
+  
+  def swapExitArray(newArray:Array[Option[Room]], index:Int) = _exits = newArray
+  
   
   def roomInfo:String = { 
     var masterString = ""
@@ -12,14 +19,14 @@ class Room (
     masterString += name + "\n" + description + "\n" + "Available item(s): " //assemble info
     
     //listing items
-    if (items.size > 1) { //if more than 2 items
-      for (i <- 0 until items.size) {
-        if (i != items.size - 1) masterString += (items(i).name + ", ")
-        else masterString += (" " + items(i).name) //listing out the items with proper oxford comma
+    if (_items.size > 1) { //if more than 2 items
+      for (i <- 0 until _items.size) {
+        if (i != _items.size - 1) masterString += (_items(i).name + ", ")
+        else masterString += (" " + _items(i).name) //listing out the items with proper oxford comma
       }
     } // else if (items.size == 2) masterString += items(0).name + " and " + items(1).name //uncomment this line maybe 
-    else if (items.size == 1) { //if only item
-      masterString += items(0).name
+    else if (_items.size == 1) { //if only item
+      masterString += _items(0).name
     } else masterString += "None" //if no items
     
     /*
@@ -42,4 +49,3 @@ class Room (
   def getItem(itemName:String):Option[Item] = ???
   def dropItem(item:String):Unit = ???
 }
-

@@ -1,0 +1,10 @@
+3
+0 Home
+This is a home.
+north 1, east 2
+1 City Vista
+This is City Vista
+south 0
+2 CSI
+This is CSI
+west 0

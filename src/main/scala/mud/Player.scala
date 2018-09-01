@@ -1,9 +1,14 @@
 package mud
 
 class Player (
-    private var:Room,
-    private var items:List[Item]
+    private var _position:Room,
+    private var _items:List[Item] = Nil
   ){
+  
+  def position = _position
+  def items = _items
+  
+  def changePosition(newRoom:Room):Unit = { _position = newRoom }
   
   def processCommand(command:String):Unit = ???
   
@@ -14,7 +19,7 @@ class Player (
   }
   
   def inventoryListing():String = ???
+ 
   
-  def move(dir:String):Unit = ???
   
 }
